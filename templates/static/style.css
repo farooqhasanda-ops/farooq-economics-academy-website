@@ -1,0 +1,23 @@
+/* Farooq Economics Academy */
+:root{--oxford:#0B1F3A;--slate:#16355B;--teal:#14B8A6;--ivory:#F8F6F1;--text:#1E293B;--white:#fff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:var(--ivory);color:var(--text);line-height:1.6}
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:18px 7%;background:var(--oxford);color:#fff}
+.logo{width:48px;height:48px;border:2px solid var(--teal);display:grid;place-items:center;border-radius:12px;color:var(--teal);font-weight:bold}
+nav a{color:#fff;text-decoration:none;margin:0 10px}
+.nav-btn,.primary-btn{background:var(--teal);padding:12px 20px;border-radius:10px;color:#04211f;text-decoration:none;font-weight:bold}
+.secondary-btn{border:1px solid #fff;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:80px 7%;background:linear-gradient(135deg,var(--oxford),var(--slate));color:#fff}
+.hero h2{font-size:54px;margin:20px 0}
+.hero-card{background:rgba(255,255,255,.08);padding:30px;border-radius:20px}
+.features,.subject-grid,.fee-grid,.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding:40px 7%}
+.feature,.subject-card,.fee-card,.contact-grid div{background:#fff;padding:25px;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.subject-card{background:linear-gradient(135deg,var(--oxford),var(--slate));color:#fff;text-align:center}
+.split-section,.online-section,.admission{padding:70px 7%}
+.online-section{background:linear-gradient(135deg,var(--slate),var(--oxford));color:#fff}
+.admission-form{display:grid;grid-template-columns:1fr 1fr;gap:15px;background:#fff;padding:25px;border-radius:18px}
+.admission-form input,.admission-form select{padding:14px;border:1px solid #ccc;border-radius:10px}
+.admission-form button{grid-column:1/-1;padding:15px;background:var(--teal);border:none;border-radius:10px;font-weight:bold}
+footer{background:var(--oxford);color:#fff;text-align:center;padding:25px}
+.floating-whatsapp{position:fixed;right:20px;bottom:20px;background:var(--teal);padding:14px 18px;border-radius:30px;color:#04211f;text-decoration:none;font-weight:bold}
+@media(max-width:768px){.hero,.admission-form{grid-template-columns:1fr}.navbar{flex-direction:column;gap:10px}}
