@@ -67,6 +67,7 @@ document.getElementById('copy-draft').addEventListener('click', async () => {
 const portrait = new Image();
 portrait.onload = () => document.querySelectorAll('[data-founder-photo]').forEach(image => {
   image.src = portrait.src;
+  image.removeAttribute('aria-hidden');
   image.closest('.portrait-wrap').classList.add('has-photo');
 });
 portrait.src = '/static/farooq-hasan.jpg';
