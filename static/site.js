@@ -43,6 +43,13 @@ tabs.forEach((tab, index) => {
   });
 });
 
+document.querySelectorAll('[data-choose-course]').forEach(link => {
+  link.addEventListener('click', () => {
+    const tab = tabs.find(item => item.dataset.course === link.dataset.chooseCourse);
+    if (tab) chooseCourse(tab);
+  });
+});
+
 const form = document.getElementById('enquiry-form');
 const draft = document.getElementById('draft');
 const draftMessage = document.getElementById('draft-message');
@@ -51,7 +58,7 @@ form.addEventListener('submit', event => event.preventDefault());
 document.getElementById('prepare-draft').addEventListener('click', () => {
   if (!form.reportValidity()) return;
   const values = Object.fromEntries(new FormData(form));
-  draftMessage.value = `Hello Farooq Economics Academy,\n\nI would like to discuss Intermediate tuition and a guidance call.\n\nStudent: ${values.student.trim()}\nParent: ${values.parent.trim() || 'Not provided'}\nYear: ${values.year}\nTuition focus: ${values.stream}\nSubject: ${values.subject}\nPreferred mode: ${values.mode || 'Open to discussing'}\n\nPlease share the available timings and next steps.`;
+  draftMessage.value = `Hello Farooq Economics Academy,\n\nI would like to discuss Intermediate tuition and a guidance call.\n\nStudent: ${values.student.trim()}\nParent: ${values.parent.trim() || 'Not provided'}\nYear: ${values.year}\nTuition focus: ${values.stream}\nSubject: ${values.subject}\nPreferred arrangement: ${values.mode || 'Open to discussing'}\n\nPlease share the available timings and next steps.`;
   draft.hidden = false;
   draftStatus.textContent = 'This draft stays in your browser. Copying it does not send it.';
   draft.scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'nearest'});
@@ -62,8 +69,7 @@ document.getElementById('copy-draft').addEventListener('click', async () => {
   catch { draftMessage.select(); draftStatus.textContent = 'Select and copy the draft above. Nothing was sent.'; }
 });
 
-// The owner can add static/farooq-hasan.jpg to the repository. Until then,
-// an intentional academy portrait placeholder keeps both layouts complete.
+// Use the same owner-supplied portrait in the hero and About section.
 const portrait = new Image();
 portrait.onload = () => document.querySelectorAll('[data-founder-photo]').forEach(image => {
   image.src = portrait.src;
