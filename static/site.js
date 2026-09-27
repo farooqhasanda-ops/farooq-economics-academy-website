@@ -17,8 +17,8 @@ navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', 
 document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
 
 const courses = {
-  MEC: {title: 'For MEC students', description: 'Focused tuition in the subjects we teach, with space to revisit difficult chapters.', subjects: ['Economics', 'Commerce']},
   CEC: {title: 'For CEC students', description: 'Build your understanding across key subjects and turn it into stronger exam answers.', subjects: ['Civics', 'Economics', 'Commerce']},
+  'Economics & Commerce': {title: 'Economics & Commerce tuition', description: 'Targeted lessons in either subject, with regular revision and exam practice.', subjects: ['Economics', 'Commerce']},
   Accountancy: {title: 'Accountancy support', description: 'Step-by-step explanations and regular problem practice to develop accuracy.', subjects: ['Accountancy']}
 };
 const tabs = [...document.querySelectorAll('.course-tabs [role="tab"]')];
@@ -31,7 +31,7 @@ function chooseCourse(tab) {
   document.getElementById('course-description').textContent = courses[course].description;
   document.getElementById('course-subjects').replaceChildren(...courses[course].subjects.map(subject => { const chip = document.createElement('span'); chip.textContent = subject; return chip; }));
   document.getElementById('course-cta').firstChild.textContent = `Ask about ${course} support `;
-  document.getElementById('enquiry-stream').value = course === 'Accountancy' ? 'Other / Accountancy' : course;
+  document.getElementById('enquiry-stream').value = course;
 }
 tabs.forEach((tab, index) => {
   tab.addEventListener('click', () => chooseCourse(tab));
@@ -51,7 +51,7 @@ form.addEventListener('submit', event => event.preventDefault());
 document.getElementById('prepare-draft').addEventListener('click', () => {
   if (!form.reportValidity()) return;
   const values = Object.fromEntries(new FormData(form));
-  draftMessage.value = `Hello Farooq Economics Academy,\n\nI would like to discuss Intermediate tuition and a guidance call.\n\nStudent: ${values.student.trim()}\nParent: ${values.parent.trim() || 'Not provided'}\nYear: ${values.year}\nStream: ${values.stream}\nSubject: ${values.subject}\nPreferred mode: ${values.mode || 'Open to discussing'}\n\nPlease share the available timings and next steps.`;
+  draftMessage.value = `Hello Farooq Economics Academy,\n\nI would like to discuss Intermediate tuition and a guidance call.\n\nStudent: ${values.student.trim()}\nParent: ${values.parent.trim() || 'Not provided'}\nYear: ${values.year}\nTuition focus: ${values.stream}\nSubject: ${values.subject}\nPreferred mode: ${values.mode || 'Open to discussing'}\n\nPlease share the available timings and next steps.`;
   draft.hidden = false;
   draftStatus.textContent = 'This draft stays in your browser. Copying it does not send it.';
   draft.scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'nearest'});
